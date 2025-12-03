@@ -1,10 +1,42 @@
-import React from 'react'
-import Card from '../component/Card'
+import React, { useEffect } from "react";
+import Card from "../component/Card";
+import { BASE_URL } from "../../ constants/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { addFeed } from "../features/feedSlice";
+import axios from "axios";
 
 const Feed = () => {
-  return (
-    <div><Card/></div>
-  )
-}
+  const dispatch = useDispatch();
+  const feedData = useSelector((store) => store.feed);
 
-export default Feed
+  async function getFeed() {
+    if (feedData) return;
+
+    try {
+      const res = await axios.get(`${BASE_URL}/user/feed`, {
+        withCredentials: true,
+      });
+      console.log("FROM", res.data.users);
+
+      dispatch(addFeed(res.data.users));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getFeed();
+  }, []);
+  return (
+    feedData && (
+      <div>
+        <Card user={feedData} forFeed= {true} />;
+        {/* {feedData.map((d) => {
+          return <Card user = {d} />;
+        })} */}
+      </div>
+    )
+  );
+};
+
+export default Feed;

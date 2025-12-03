@@ -4,6 +4,7 @@ import Body from "./pages/Body";
 import AuthPage from "./pages/Login";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
+import Connections from "./pages/Connections";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Body />}>
             <Route path="/login" element={<AuthPage />} />
             <Route path="/feed" element={<Feed />} />
+            <Route path="/connections" element={<Connections />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
