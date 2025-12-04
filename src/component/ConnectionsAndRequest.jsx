@@ -23,15 +23,15 @@ const ConnectionsAndRequest = ({ id, user, forRequests }) => {
 
   function handleAccepted() {
     console.log(_id);
-    dispatch(removeFromRequest(_id));
+    dispatch(removeFromRequest(id));
     axios.post(`${BASE_URL}/request/response/accepted/${id}`, null, {
       withCredentials: true,
     });
   }
   function handleRejected() {
     console.log(_id);
-    dispatch(removeFromRequest(_id));
-    axios.post(`${BASE_URL}/request/response/rejected/${_id}`, null, {
+    dispatch(removeFromRequest(id));
+    axios.post(`${BASE_URL}/request/response/rejected/${id}`, null, {
       withCredentials: true,
     });
   }

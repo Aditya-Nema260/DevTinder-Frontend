@@ -8,7 +8,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const user = useSelector((store) => store.user);
-  console.log("USER : ", user);
   async function handleLogout() {
     try {
       await axios.post(

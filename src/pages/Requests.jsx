@@ -15,9 +15,6 @@ const Requests = () => {
       });
 
       const requests = res.data.requests;
-
-      console.log("FROM", res.data.requests);
-      console.log("FROM", requests);
       dispatch(addRequests(requests));
     } catch (error) {
       console.log(error);
@@ -31,15 +28,15 @@ const Requests = () => {
     requests && (
       <div className="flex gap-3 wrap-normal ">
         {requests.map((request) => (
-          <div>
+          <div key={request._id}>
             <ConnectionsAndRequest
-              key={request._id}
               user={request.fromUserID}
               forRequests={true}
               id={request._id}
             />
           </div>
         ))}
+        {requests.length === 0 ? "No Requests to show" : ""}
       </div>
     )
   );
