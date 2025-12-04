@@ -71,19 +71,27 @@ const Card = ({ user, forFeed }) => {
           {age && <p className="text-sm">🎂 Age: {age}</p>}
 
           {gender && <p className="text-sm">⚧ Gender: {gender}</p>}
-
           {techStack?.length > 0 && (
             <div className="mt-3">
               <p className="font-semibold mb-1">Tech Stack:</p>
               <div className="flex flex-wrap gap-2 justify-center">
-                {techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="badge badge-primary badge-outline px-3 py-1"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {typeof techStack === "string"
+                  ? techStack.split(" ").filter(tech => tech).map((tech, i) => (
+                      <span
+                        key={i}
+                        className="badge badge-primary badge-outline px-3 py-1"
+                      >
+                        {tech.trim()}
+                      </span>
+                    ))
+                  : techStack.filter(tech => tech).map((tech, i) => (
+                      <span
+                        key={i}
+                        className="badge badge-primary badge-outline px-3 py-1"
+                      >
+                        {tech}
+                      </span>
+                    ))}
               </div>
             </div>
           )}
