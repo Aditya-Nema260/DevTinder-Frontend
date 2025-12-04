@@ -5,6 +5,7 @@ import AuthPage from "./pages/Login";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Connections from "./pages/Connections";
+import Requests from "./pages/Requests";
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
             <Route path="/login" element={<AuthPage />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/connections" element={<Connections />} />
+            <Route path="/requests" element={<Requests />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>

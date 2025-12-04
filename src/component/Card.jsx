@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeFromFeed } from "../features/feedSlice";
+import { BASE_URL } from "../../ constants/constant";
+import axios from "axios"
 
 const Card = ({ user, forFeed }) => {
   // console.log("USER:", user);
@@ -26,9 +28,16 @@ const Card = ({ user, forFeed }) => {
     _id,
   } = user[0];
   console.log(user[0]);
-
-  // console.log(_id);
-  console.log();
+  function handleInterested() {
+    console.log(_id);
+    dispatch(removeFromFeed(_id));
+    axios.post(`${BASE_URL}/request/send/interested/${_id}`,null,{withCredentials: true});
+  }
+  function handleIgnored() {
+    console.log(_id);
+    dispatch(removeFromFeed(_id));
+    axios.post(`${BASE_URL}/request/send/ignored/${_id}`,null,{withCredentials: true});
+  }
 
   return (
     <div className="flex justify-center items-center h-[80vh]">
@@ -83,16 +92,12 @@ const Card = ({ user, forFeed }) => {
           {forFeed && (
             <div className="flex gap-6 card-actions mt-5">
               <button
-                onClick={() => {
-                  console.log(_id);
-
-                  dispatch(removeFromFeed(_id));
-                }}
+                onClick={handleInterested}
                 className="btn bg-green-700 text-white"
               >
                 Interested
               </button>
-              <button className="btn bg-red-700 text-white">Ignore</button>
+              <button onClick={handleIgnored} className="btn bg-red-700 text-white">Ignore</button>
             </div>
           )}
         </div>

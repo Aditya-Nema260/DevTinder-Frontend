@@ -36,6 +36,8 @@ const Navbar = () => {
       </div>
       <div className="flex gap-2">
         <div className="flex items-center justify-center">
+          <Link to={"/feed"} className="mr-5">Feed</Link>
+          <Link to={"/requests"} className="mr-5">Requests</Link>
           <Link to={"/connections"} className="mr-5">Connections</Link>
           <p className="bg-purple-700 rounded-2xl pr-2 pl-2 font-medium">
             {user && `Welcome, ${user.firstName}`}
