@@ -12,7 +12,7 @@ const feedSlice = createSlice({
 
       return (state = state.filter((user) => action.payload != user._id));
     },
-    clearFeed: () => {
+    clearFeed: (state, action) => {
       return null;
     },
   },

@@ -36,4 +36,3 @@ const Connections = () => {
 };
 
 export default Connections;
-Connections
